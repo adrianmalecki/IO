@@ -59,7 +59,8 @@ public class SignInPanel {
         else{
             frame.setVisible(false);
             JFrame clientFrame = new JFrame("Wypożyczalnia pojazdów");
-            clientFrame.setContentPane(new ClientView().clientPanel);
+            Client client = clientList.get(cID);
+            clientFrame.setContentPane(new ClientView(client).clientPanel);
             clientFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             clientFrame.pack();
             clientFrame.setVisible(true);
