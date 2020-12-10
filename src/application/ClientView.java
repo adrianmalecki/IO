@@ -26,6 +26,11 @@ public class ClientView {
     private JTextField lastNameTextField;
     private JTextField peselNameTextField;
     private JComboBox comboBox;
+    private JTextField startDateTextField;
+    private JTextField endDateTextField;
+    private JLabel inputDate;
+    private JButton showAvaiableCarsBtn;
+    private JTable carsTable;
     private Client client;
     int clicked = 0;
     int selected_dep = -1;
@@ -54,7 +59,11 @@ public class ClientView {
         firstNameTextField.setText(client.getFirstName());
         lastNameTextField.setText(client.getLastName());
         peselNameTextField.setText(String.valueOf(client.getPESEL()));
-
+        startDateTextField.setVisible(false);
+        endDateTextField.setVisible(false);
+        inputDate.setVisible(false);
+        showAvaiableCarsBtn.setVisible(false);
+        carsTable.setVisible(false);
         for (Department d:departmentsList) {
             String dep = d.getDepartmentID() + " " + d.getCity() + " " + d.getAddress();
             comboBox.addItem(dep);
@@ -78,10 +87,18 @@ public class ClientView {
                 if(selected_dep != -1){
                     System.out.println(selected_dep);
 
-/*                    textFieldStartDate.setVisible(true);
-                    textFieldEndDate.setVisible(true);
-                    showCars.setVisible(true);*/
+                    startDateTextField.setVisible(true);
+                    endDateTextField.setVisible(true);
+                    inputDate.setVisible(true);
+                    showAvaiableCarsBtn.setVisible(true);
                 }
+            }
+        });
+        showAvaiableCarsBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
             }
         });
     }
@@ -124,5 +141,10 @@ public class ClientView {
 
     private void createUIComponents() {
         tabbedPane1 = new JTabbedPane();
+        startDateTextField = new JTextField();
+        endDateTextField = new JTextField();
+        inputDate = new JLabel();
+        showAvaiableCarsBtn = new JButton();
+        carsTable = new JTable();
     }
 }

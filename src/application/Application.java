@@ -25,13 +25,13 @@ public class Application {
         Department department1 = new Department(1,"Wrocław", "oiwrngf");
         departmentsList.add(department1);
 
-        Vehicle vehicle1 = new Vehicle(1,"Fiat","126p", 1970,12345,department1);
+        Vehicle vehicle1 = new Vehicle(1,"Fiat","126p", 1970,12345,1);
         vehicleList.add(vehicle1);
-        Vehicle vehicle2 = new Vehicle(2,"Ford","Mondeo", 1970,12345,department1);
+        Vehicle vehicle2 = new Vehicle(2,"Ford","Mondeo", 1970,12345,1);
         vehicleList.add(vehicle2);
-        Vehicle vehicle3 = new Vehicle(3,"Ford","GT", 1970,12345,department1);
+        Vehicle vehicle3 = new Vehicle(3,"Ford","GT", 1970,12345,1);
         vehicleList.add(vehicle3);
-        Vehicle vehicle4 = new Vehicle(4,"Fiat","Sejczento", 1970,12345,department1);
+        Vehicle vehicle4 = new Vehicle(4,"Fiat","Sejczento", 1970,12345,1);
         vehicleList.add(vehicle4);
 
         //ClientView clientView = new ClientView(clientList, departmentsList, vehicleList);
