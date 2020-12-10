@@ -38,12 +38,13 @@ public class Application {
         Vehicle vehicle4 = new Vehicle(4,"Fiat","Sejczento", 1970,12345,department1);
         vehicleList.add(vehicle4);
 
-        ClientView clientView = new ClientView(clientList, departmentsList, vehicleList);
-        clientView.signIn();
+        //ClientView clientView = new ClientView(clientList, departmentsList, vehicleList);
 
         for (Client c:clientList) {
             System.out.println(c.getLogin());
         }
+        SignInPanel signInPanel = new SignInPanel(clientList);
+        signInPanel.runSignInPanel();
 
     }
 }
