@@ -19,7 +19,13 @@ public class ClientView {
     private JLabel lastNameLabel;
     private JLabel peselLabel;
     private JButton modifyDataButton;
+    private JTextField IDtextField;
+    private JTextField firstNameTextField;
+    private JTextField lastNameTextField;
+    private JTextField peselNameTextField;
+    private JTextArea IDarea;
     private Client client;
+    int clicked = 0;
 
     private static ArrayList<Client> clientList;
        /*      static ArrayList<Vehicle> vehicleList;
@@ -33,7 +39,7 @@ public class ClientView {
             this.departmentsList = departmentsList;
         }
     */
-    public ClientView(Client client) {
+    public ClientView(final Client client) {
         this.client = client;
         tabbedPane1.addComponentListener(new ComponentAdapter() {
         });
@@ -41,19 +47,40 @@ public class ClientView {
         });
         myDataPanel.addComponentListener(new ComponentAdapter() {
         });
-        peselLabel.addComponentListener(new ComponentAdapter() {
-        });
-        IDLabel.setText("ID: " + client.getID());
-        firstNameLabel.setText("Imię: "+ client.getFirstName());
-        lastNameLabel.setText("Nazwisko: " + client.getLastName());
-        peselLabel.setText("PESEL: "+ client.getPESEL());
+        IDtextField.setText(String.valueOf(client.getID()));
+        //IDLabel.setText(String.valueOf(client.getID()));
+        firstNameTextField.setText(client.getFirstName());
+        lastNameTextField.setText(client.getLastName());
+        peselNameTextField.setText(String.valueOf(client.getPESEL()));
 
         modifyDataButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(clicked==0){actionPerformededitData(e);}
+                else{actionPerformedSaveNewData(e);}
 
             }
         });
+
+    }
+    public void actionPerformededitData(ActionEvent e) {
+
+        firstNameTextField.setEditable(true);
+        lastNameTextField.setEditable(true);
+        peselNameTextField.setEditable(true);
+        modifyDataButton.setText("Zapisz zmiany");
+        clicked = 1;
+    }
+    public void actionPerformedSaveNewData(ActionEvent e) {
+
+        client.setFirstName(firstNameTextField.getText());
+        client.setLastName(lastNameTextField.getText());
+        client.setPESEL(Integer.parseInt(peselNameTextField.getText()));
+        firstNameTextField.setEditable(false);
+        lastNameTextField.setEditable(false);
+        peselNameTextField.setEditable(false);
+        modifyDataButton.setText("Edytuj dane");
+        clicked=0;
     }
 
     public void editData() {
@@ -77,5 +104,6 @@ public class ClientView {
 
     private void createUIComponents() {
         tabbedPane1 = new JTabbedPane();
+
     }
 }
