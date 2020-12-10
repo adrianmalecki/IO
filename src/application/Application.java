@@ -15,7 +15,7 @@ public class Application {
         ArrayList<Department> departmentsList = new ArrayList<Department>();
         ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
         ArrayList<Bill> billList;
-        Client client1 = new Client(1,991236781,"Jan","Nowak", "123456789", "asdf@o2.pl", "1234-45", "Wroclaw","ghtyhrtg",123,1,"333","login1","password1");
+        Client client1 = new Client(1,991236781,"Jan","Nowak", "123456789", "asdf@o2.pl", "1234-45", "Wroclaw","ghtyhrtg",123,1,"333","q","q");
         clientList.add(client1);
         Client client2 = new Client(2,123236781,"John","Nowak", "123456789", "asdf@o2.pl", "1234-45", "Wroclaw","w54hw54h",456,2,"444","login2","password2");
         clientList.add(client2);
@@ -39,7 +39,7 @@ public class Application {
         for (Client c:clientList) {
             System.out.println(c.getLogin());
         }
-        SignInPanel signInPanel = new SignInPanel(clientList);
+        SignInPanel signInPanel = new SignInPanel(clientList, departmentsList, vehicleList);
         signInPanel.runSignInPanel();
 
     }

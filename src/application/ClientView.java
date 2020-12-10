@@ -1,6 +1,8 @@
 package application;
 
 import data.Client;
+import data.Department;
+import data.Vehicle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,23 +25,23 @@ public class ClientView {
     private JTextField firstNameTextField;
     private JTextField lastNameTextField;
     private JTextField peselNameTextField;
-    private JTextArea IDarea;
+    private JComboBox comboBox;
     private Client client;
     int clicked = 0;
+    int selected_dep = -1;
 
     private static ArrayList<Client> clientList;
-       /*      static ArrayList<Vehicle> vehicleList;
-        static ArrayList<Department> departmentsList;
-        static Client client = new Client();
-
-
-        public ClientView(ArrayList<Client> clientList,ArrayList<Department> departmentsList,ArrayList<Vehicle> vehicleList) {
-            this.clientList = clientList;
-            this.vehicleList = vehicleList;
-            this.departmentsList = departmentsList;
-        }
-    */
-    public ClientView(final Client client) {
+    ArrayList<Department> departmentsList;
+    ArrayList<Vehicle> vehicleList;/*
+     static ArrayList<Department> departmentsList;
+     static Client client = new Client();
+     public ClientView(ArrayList<Client> clientList,ArrayList<Department> departmentsList,ArrayList<Vehicle> vehicleList) {
+         this.clientList = clientList;
+         this.vehicleList = vehicleList;
+         this.departmentsList = departmentsList;
+     }
+ */
+    public ClientView(final Client client,ArrayList<Department> departmentsList, ArrayList<Vehicle> vehicleList) {
         this.client = client;
         tabbedPane1.addComponentListener(new ComponentAdapter() {
         });
@@ -53,17 +55,37 @@ public class ClientView {
         lastNameTextField.setText(client.getLastName());
         peselNameTextField.setText(String.valueOf(client.getPESEL()));
 
+        for (Department d:departmentsList) {
+            String dep = d.getDepartmentID() + " " + d.getCity() + " " + d.getAddress();
+            comboBox.addItem(dep);
+        }
+
+
         modifyDataButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(clicked==0){actionPerformededitData(e);}
-                else{actionPerformedSaveNewData(e);}
+                if(clicked==0){editData(e);}
+                else{saveData(e);}
 
             }
         });
 
+
+        comboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selected_dep = comboBox.getSelectedIndex() + 1;
+                if(selected_dep != -1){
+                    System.out.println(selected_dep);
+
+/*                    textFieldStartDate.setVisible(true);
+                    textFieldEndDate.setVisible(true);
+                    showCars.setVisible(true);*/
+                }
+            }
+        });
     }
-    public void actionPerformededitData(ActionEvent e) {
+    public void editData(ActionEvent e) {
 
         firstNameTextField.setEditable(true);
         lastNameTextField.setEditable(true);
@@ -71,7 +93,7 @@ public class ClientView {
         modifyDataButton.setText("Zapisz zmiany");
         clicked = 1;
     }
-    public void actionPerformedSaveNewData(ActionEvent e) {
+    public void saveData(ActionEvent e) {
 
         client.setFirstName(firstNameTextField.getText());
         client.setLastName(lastNameTextField.getText());
@@ -83,8 +105,6 @@ public class ClientView {
         clicked=0;
     }
 
-    public void editData() {
-    }
 
     public void deleteData() {
     }
@@ -104,6 +124,5 @@ public class ClientView {
 
     private void createUIComponents() {
         tabbedPane1 = new JTabbedPane();
-
     }
 }

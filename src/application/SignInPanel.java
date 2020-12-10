@@ -6,18 +6,26 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import data.Client;
+import data.Department;
+import data.Vehicle;
 
 public class SignInPanel {
     static JFrame frame = new JFrame("Wypożyczalnia pojazdów");
     private static ArrayList<Client> clientList;
+    private static ArrayList<Department> departmentsList;
+    private static ArrayList<Vehicle> vehicleList;
+
+
     private JPanel loginPanel;
     private JTextField loginTextField;
     private JPasswordField hasloPasswordField;
     private JButton loginButton;
     private JButton registerButton;
 
-    public SignInPanel(ArrayList<Client> clientList) {
+    public SignInPanel(ArrayList<Client> clientList, ArrayList<Department> departmentsList, ArrayList<Vehicle> vehicleList) {
         this.clientList = clientList;
+        this.departmentsList = departmentsList;
+        this.vehicleList = vehicleList;
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,7 +68,7 @@ public class SignInPanel {
             frame.setVisible(false);
             JFrame clientFrame = new JFrame("Wypożyczalnia pojazdów");
             Client client = clientList.get(cID);
-            clientFrame.setContentPane(new ClientView(client).clientPanel);
+            clientFrame.setContentPane(new ClientView(client, departmentsList, vehicleList).clientPanel);
             clientFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             clientFrame.pack();
             clientFrame.setVisible(true);
@@ -96,7 +104,7 @@ public class SignInPanel {
             e.printStackTrace();
         }
 
-        frame.setContentPane(new SignInPanel(clientList).loginPanel);
+        frame.setContentPane(new SignInPanel(clientList, departmentsList, vehicleList).loginPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
