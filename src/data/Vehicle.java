@@ -9,15 +9,13 @@ public class Vehicle {
     private int carsMileage;
     private enum status{};
     private enum stateOfCar{};
-    private int departmentID;
 
-    public Vehicle(int vehicleID, String brand, String model, int yearOfProduction, int carsMileage, int departmentID) {
+    public Vehicle(int vehicleID, String brand, String model, int yearOfProduction, int carsMileage) {
         this.vehicleID = vehicleID;
         this.brand = brand;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
         this.carsMileage = carsMileage;
-        this.departmentID = departmentID;
     }
 
     public int getVehicleID() {

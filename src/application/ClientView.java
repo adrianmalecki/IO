@@ -37,7 +37,8 @@ public class ClientView {
 
     private static ArrayList<Client> clientList;
     ArrayList<Department> departmentsList;
-    ArrayList<Vehicle> vehicleList;/*
+    //ArrayList<Vehicle> vehicleList;
+    /*
      static ArrayList<Department> departmentsList;
      static Client client = new Client();
      public ClientView(ArrayList<Client> clientList,ArrayList<Department> departmentsList,ArrayList<Vehicle> vehicleList) {
@@ -46,7 +47,7 @@ public class ClientView {
          this.departmentsList = departmentsList;
      }
  */
-    public ClientView(final Client client,ArrayList<Department> departmentsList, ArrayList<Vehicle> vehicleList) {
+    public ClientView(final Client client,ArrayList<Department> departmentsList) {
         this.client = client;
         tabbedPane1.addComponentListener(new ComponentAdapter() {
         });
