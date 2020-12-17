@@ -31,35 +31,32 @@ public class ClientView {
     private JLabel inputDate;
     private JButton showAvaiableCarsBtn;
     private JTable carsTable;
+    private JTextField addressTextField;
+    private JTextField cityTextField;
+    private JTextField postCodeTextField;
+    private JTextField emailTextField;
+    private JTextField phoneTextField;
     private Client client;
     int clicked = 0;
     int selected_dep = -1;
 
-    private static ArrayList<Client> clientList;
-    ArrayList<Department> departmentsList;
-    //ArrayList<Vehicle> vehicleList;
-    /*
-     static ArrayList<Department> departmentsList;
-     static Client client = new Client();
-     public ClientView(ArrayList<Client> clientList,ArrayList<Department> departmentsList,ArrayList<Vehicle> vehicleList) {
-         this.clientList = clientList;
-         this.vehicleList = vehicleList;
-         this.departmentsList = departmentsList;
-     }
- */
-    public ClientView(final Client client,ArrayList<Department> departmentsList) {
-        this.client = client;
+
+    public ClientView(Client client) {
         tabbedPane1.addComponentListener(new ComponentAdapter() {
         });
         reservePanel.addComponentListener(new ComponentAdapter() {
         });
         myDataPanel.addComponentListener(new ComponentAdapter() {
         });
-        IDtextField.setText(String.valueOf(client.getID()));
-        //IDLabel.setText(String.valueOf(client.getID()));
+        IDtextField.setText(String.valueOf(Facade.getClientList().indexOf(client)));
         firstNameTextField.setText(client.getFirstName());
         lastNameTextField.setText(client.getLastName());
-        peselNameTextField.setText(String.valueOf(client.getPESEL()));
+        peselNameTextField.setText(client.getPESEL());
+        addressTextField.setText(client.getAddress());
+        cityTextField.setText(client.getCity());
+        postCodeTextField.setText(client.getPostCode());
+        emailTextField.setText(client.getEmail());
+        phoneTextField.setText(client.getPhoneNumber());
         startDateTextField.setVisible(false);
         endDateTextField.setVisible(false);
         inputDate.setVisible(false);
@@ -67,13 +64,14 @@ public class ClientView {
         carsTable.setVisible(false);
 
 
-
         modifyDataButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(clicked==0){editData(e);}
-                else{saveData(e);}
-
+                if(clicked==0) editData(e);
+                else {
+                    Facade.modifyData(client, firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText(), emailTextField.getText(), postCodeTextField.getText(), cityTextField.getText(), addressTextField.getText());
+                    saveData(e);
+                }
             }
         });
 
@@ -91,22 +89,26 @@ public class ClientView {
 
         firstNameTextField.setEditable(true);
         lastNameTextField.setEditable(true);
-        peselNameTextField.setEditable(true);
+        addressTextField.setEditable(true);
+        cityTextField.setEditable(true);
+        postCodeTextField.setEditable(true);
+        emailTextField.setEditable(true);
+        phoneTextField.setEditable(true);
         modifyDataButton.setText("Zapisz zmiany");
         clicked = 1;
     }
     public void saveData(ActionEvent e) {
 
-        client.setFirstName(firstNameTextField.getText());
-        client.setLastName(lastNameTextField.getText());
-        client.setPESEL(Integer.parseInt(peselNameTextField.getText()));
         firstNameTextField.setEditable(false);
         lastNameTextField.setEditable(false);
-        peselNameTextField.setEditable(false);
+        addressTextField.setEditable(false);
+        cityTextField.setEditable(false);
+        postCodeTextField.setEditable(false);
+        emailTextField.setEditable(false);
+        phoneTextField.setEditable(false);
         modifyDataButton.setText("Edytuj dane");
         clicked=0;
     }
-
 
     public void deleteData() {
     }

@@ -2,16 +2,17 @@ package application;
 
 import data.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Facade {
-    private ArrayList<Client> clientList;
-    private ArrayList<Worker> workersList;
-    private ArrayList<Department> departmentsList;
-    private ArrayList<Rental> rentalList;
-    private ArrayList<Reservation> reservationList;
-    private ArrayList<Bill> billList;
+    private static ArrayList<Client> clientList;
+    private static ArrayList<Worker> workersList;
+    private static ArrayList<Department> departmentsList;
+    private static ArrayList<Rental> rentalList;
+    private static ArrayList<Reservation> reservationList;
+    private static ArrayList<Bill> billList;
 
     public Facade() {
         clientList = new ArrayList<Client>();
@@ -26,11 +27,11 @@ public class Facade {
 
         Facade app = new Facade();
 
-        Client client1 = new Client(1,991236781,"Jan","Nowak", "123456789", "asdf@o2.pl", "1234-45", "Wroclaw","ghtyhrtg",123,1,"333","q","q");
+        Client client1 = new Client("99010112147","Jan","Nowak", "123456789", "asdf@o2.pl", "1234-45", "Wroclaw","ghtyhrtg","ABC123456","333","q","q");
         app.addClient(client1);
-        Client client2 = new Client(2,123236781,"John","Nowak", "123456789", "asdf@o2.pl", "1234-45", "Wroclaw","w54hw54h",456,2,"444","login2","password2");
+        Client client2 = new Client("77122587963","John","Nowak", "123456789", "asdf@o2.pl", "1234-45", "Wroclaw","w54hw54h","CBA456789","444","login2","password2");
         app.addClient(client2);
-        Client client3 = new Client(3,786789781,"Tomasz","Kot", "432134567", "tdh@o2.pl", "1234-45", "Warszawa","64wu4wht",789,3,"555","login3","password3");
+        Client client3 = new Client("88071945789","Tomasz","Kot", "432134567", "tdh@o2.pl", "1234-45", "Warszawa","64wu4wht","BSF147852","555","login3","password3");
         app.addClient(client3);
 
         Department department1 = new Department(1,"Wrocław", "Plac Grunwaldzki 1");
@@ -46,70 +47,102 @@ public class Facade {
         app.getDepartmentsList().get(0).getVehicles().add(vehicle4);
 
 
-
-        //ClientView clientView = new ClientView(clientList, departmentsList, vehicleList);
-
-        for (Client c: app.getClientList()) {
+        for (Client c: getClientList()) {
             System.out.println(c.getLogin());
         }
-        SignInPanel signInPanel = new SignInPanel(app.getClientList(), app.getDepartmentsList());
+        SignInPanel signInPanel = new SignInPanel();
         signInPanel.runSignInPanel();
 
     }
 
-    private void addClient(Client client) {
-        getClientList().add(client);
+    public static int verifyData(String login, String password){
+        for (Client c: clientList) {
+            if(login.equals(c.getLogin())) {
+                if (password.equals(c.getPassword())) {
+                    return clientList.indexOf(c);
+                }
+            }
+        }
+        return -1;
     }
 
-    private void addDepartment(Department department) {
+    public static boolean checkPESEL(String PESEL) {
+        for (Client c:clientList) {
+            if(PESEL.equals(c.getPESEL())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void modifyData(Client client, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address) {
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setEmail(email);
+        client.setPhoneNumber(phoneNumber);
+        client.setAddress(address);
+        client.setCity(city);
+        client.setPostCode(postCode);
+    }
+
+    public static void registerClient(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String drivingLicenseNumber, String login, char[] password) {
+        Client client = new Client(PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber, drivingLicenseNumber, login, String.valueOf(password));
+        addClient(client);
+    }
+
+    private static void addClient(Client client) {
+        clientList.add(client);
+    }
+
+    private static void addDepartment(Department department) {
         getDepartmentsList().add(department);
     }
 
-    public ArrayList<Client> getClientList() {
+    public static ArrayList<Client> getClientList() {
         return clientList;
     }
 
-    public void setClientList(ArrayList<Client> clientList) {
-        this.clientList = clientList;
+    public static void setClientList(ArrayList<Client> clientList) {
+        Facade.clientList = clientList;
     }
 
-    public ArrayList<Worker> getWorkersList() {
+    public static ArrayList<Worker> getWorkersList() {
         return workersList;
     }
 
-    public void setWorkersList(ArrayList<Worker> workersList) {
-        this.workersList = workersList;
+    public static void setWorkersList(ArrayList<Worker> workersList) {
+        Facade.workersList = workersList;
     }
 
-    public ArrayList<Department> getDepartmentsList() {
+    public static ArrayList<Department> getDepartmentsList() {
         return departmentsList;
     }
 
-    public void setDepartmentsList(ArrayList<Department> departmentsList) {
-        this.departmentsList = departmentsList;
+    public static void setDepartmentsList(ArrayList<Department> departmentsList) {
+        Facade.departmentsList = departmentsList;
     }
 
-    public ArrayList<Rental> getRentalList() {
+    public static ArrayList<Rental> getRentalList() {
         return rentalList;
     }
 
-    public void setRentalList(ArrayList<Rental> rentalList) {
-        this.rentalList = rentalList;
+    public static void setRentalList(ArrayList<Rental> rentalList) {
+        Facade.rentalList = rentalList;
     }
 
-    public ArrayList<Reservation> getReservationList() {
+    public static ArrayList<Reservation> getReservationList() {
         return reservationList;
     }
 
-    public void setReservationList(ArrayList<Reservation> reservationList) {
-        this.reservationList = reservationList;
+    public static void setReservationList(ArrayList<Reservation> reservationList) {
+        Facade.reservationList = reservationList;
     }
 
-    public ArrayList<Bill> getBillList() {
+    public static ArrayList<Bill> getBillList() {
         return billList;
     }
 
-    public void setBillList(ArrayList<Bill> billList) {
-        this.billList = billList;
+    public static void setBillList(ArrayList<Bill> billList) {
+        Facade.billList = billList;
     }
 }

@@ -2,8 +2,7 @@ package data;
 
 public class User {
 
-    private int userID;
-    private int PESEL;
+    private String PESEL;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -11,10 +10,9 @@ public class User {
     private String postCode;
     private String city;
     private String address;
-    private int identityCardNumber;
+    private String identityCardNumber;
 
-    public User(int userID, int PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, int identityCardNumber) {
-        this.userID = userID;
+    public User(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber) {
         this.PESEL = PESEL;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,14 +27,6 @@ public class User {
     public User() {
     }
 
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -45,19 +35,11 @@ public class User {
         this.email = email;
     }
 
-    public int getID() {
-        return userID;
-    }
-
-    public void setID(int userID) {
-        this.userID = userID;
-    }
-
-    public int getPESEL() {
+    public String getPESEL() {
         return PESEL;
     }
 
-    public void setPESEL(int PESEL) {
+    public void setPESEL(String PESEL) {
         this.PESEL = PESEL;
     }
 
@@ -109,11 +91,11 @@ public class User {
         this.address = address;
     }
 
-    public int getIdentityCardNumber() {
+    public String getIdentityCardNumber() {
         return identityCardNumber;
     }
 
-    public void setIdentityCardNumber(int identityCardNumber) {
+    public void setIdentityCardNumber(String identityCardNumber) {
         this.identityCardNumber = identityCardNumber;
     }
 }
