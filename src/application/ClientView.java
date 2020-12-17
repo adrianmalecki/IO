@@ -1,13 +1,10 @@
 package application;
 
 import data.Client;
-import data.Department;
-import data.Vehicle;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
-import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -36,6 +33,7 @@ public class ClientView {
     private JTextField postCodeTextField;
     private JTextField emailTextField;
     private JTextField phoneTextField;
+    private JButton deleteData;
     private Client client;
     int clicked = 0;
     int selected_dep = -1;
@@ -82,6 +80,16 @@ public class ClientView {
             public void actionPerformed(ActionEvent e) {
 
 
+            }
+        });
+        deleteData.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame deleteDataFrame = new JFrame("Usuń konto");
+                deleteDataFrame.setContentPane(new ConfirmDeleting(client.getLogin(), client.getPassword()).deleteDataPanel);
+                deleteDataFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                deleteDataFrame.pack();
+                deleteDataFrame.setVisible(true);
             }
         });
     }
@@ -134,5 +142,6 @@ public class ClientView {
         inputDate = new JLabel();
         showAvaiableCarsBtn = new JButton();
         carsTable = new JTable();
+        deleteData = new JButton();
     }
 }
