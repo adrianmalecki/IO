@@ -65,10 +65,7 @@ public class ClientView {
         inputDate.setVisible(false);
         showAvaiableCarsBtn.setVisible(false);
         carsTable.setVisible(false);
-        for (Department d:departmentsList) {
-            String dep = d.getDepartmentID() + " " + d.getCity() + " " + d.getAddress();
-            comboBox.addItem(dep);
-        }
+
 
 
         modifyDataButton.addActionListener(new ActionListener() {
@@ -81,20 +78,7 @@ public class ClientView {
         });
 
 
-        comboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                selected_dep = comboBox.getSelectedIndex() + 1;
-                if(selected_dep != -1){
-                    System.out.println(selected_dep);
 
-                    startDateTextField.setVisible(true);
-                    endDateTextField.setVisible(true);
-                    inputDate.setVisible(true);
-                    showAvaiableCarsBtn.setVisible(true);
-                }
-            }
-        });
         showAvaiableCarsBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -131,6 +115,7 @@ public class ClientView {
     }
 
     public void chooseDepartment() {
+
     }
 
     public void showReservations() {

@@ -41,7 +41,8 @@ public class SignInPanel {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Rejestracja w przygotowaniu");
+                register();
+               //JOptionPane.showMessageDialog(null,"Rejestracja w przygotowaniu");
             }
         });
     }
@@ -78,7 +79,14 @@ public class SignInPanel {
 
     }
 
-    public void register() {}
+    public void register() {
+        Client client = new Client();
+        JFrame registerFrame = new JFrame("Rejestracja");
+        registerFrame.setContentPane(new Register(client).registerPanel);
+        registerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        registerFrame.pack();
+        registerFrame.setVisible(true);
+    }
 
     public static void runSignInPanel(){
         /*try {
