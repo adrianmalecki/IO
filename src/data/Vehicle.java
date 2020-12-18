@@ -1,31 +1,21 @@
 package data;
 
-import java.util.ArrayList;
-
 public class Vehicle {
 
-    private int vehicleID;
     private String brand;
     private String model;
     private int yearOfProduction;
     private int carsMileage;
-    private enum status{};
-    private enum stateOfCar{};
+    private Status status;
+    private StateOfCar stateOfCar;
 
-    public Vehicle(int vehicleID, String brand, String model, int yearOfProduction, int carsMileage) {
-        this.vehicleID = vehicleID;
+    public Vehicle(String brand, String model, int yearOfProduction, int carsMileage, Status status, StateOfCar stateOfCar) {
         this.brand = brand;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
         this.carsMileage = carsMileage;
-    }
-
-    public int getVehicleID() {
-        return vehicleID;
-    }
-
-    public void setVehicleID(int vehicleID) {
-        this.vehicleID = vehicleID;
+        this.status = status;
+        this.stateOfCar = stateOfCar;
     }
 
     public String getBrand() {
@@ -60,11 +50,19 @@ public class Vehicle {
         this.carsMileage = carsMileage;
     }
 
-    /*public Department getDepartment() {
-        return department;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
-    }*/
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public StateOfCar getStateOfCar() {
+        return stateOfCar;
+    }
+
+    public void setStateOfCar(StateOfCar stateOfCar) {
+        this.stateOfCar = stateOfCar;
+    }
 }

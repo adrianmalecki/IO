@@ -2,9 +2,9 @@ package data;
 
 public class Client extends User {
 
-    private String drivingLicenseNumber;
     private String login;
     private String password;
+    private String drivingLicenseNumber;
 
     public Client(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String drivingLicenseNumber, String login, String password) {
         super(PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber);

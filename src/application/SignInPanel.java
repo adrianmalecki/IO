@@ -9,10 +9,6 @@ import data.Client;
 public class SignInPanel {
     static JFrame signInFrame = new JFrame("Wypożyczalnia pojazdów");
     static JFrame checkPanel = new JFrame("Wypożyczalnia pojazdów");
-    //private static ArrayList<Client> clientList;
-    //private static ArrayList<Department> departmentsList;
-    //private static ArrayList<Vehicle> vehicleList;
-
 
     public JPanel loginPanel;
     private JTextField loginTextField;

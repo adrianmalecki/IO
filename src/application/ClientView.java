@@ -34,7 +34,7 @@ public class ClientView {
     private JTextField emailTextField;
     private JTextField phoneTextField;
     private JButton deleteData;
-    private Client client;
+    //private Client client;
     int clicked = 0;
     int selected_dep = -1;
 

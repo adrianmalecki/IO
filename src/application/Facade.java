@@ -2,9 +2,7 @@ package application;
 
 import data.*;
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Facade {
     private static ArrayList<Client> clientList;
@@ -34,16 +32,16 @@ public class Facade {
         Client client3 = new Client("88071945789","Tomasz","Kot", "432134567", "tdh@o2.pl", "1234-45", "Warszawa","64wu4wht","BSF147852","555","login3","password3");
         app.addClient(client3);
 
-        Department department1 = new Department(1,"Wrocław", "Plac Grunwaldzki 1");
+        Department department1 = new Department("Wrocław", "Plac Grunwaldzki 1");
         app.addDepartment(department1);
 
-        Vehicle vehicle1 = new Vehicle(1,"Volkswagen","Polo", 2018,12345);
+        Vehicle vehicle1 = new Vehicle("Volkswagen","Polo", 2018,12345, Status.AVAILABLE, StateOfCar.FUNCTIONAL);
         app.getDepartmentsList().get(0).getVehicles().add(vehicle1);
-        Vehicle vehicle2 = new Vehicle(2,"Ford","Mondeo", 2017,12345);
+        Vehicle vehicle2 = new Vehicle("Ford","Mondeo", 2017,12345, Status.AVAILABLE, StateOfCar.FUNCTIONAL);
         app.getDepartmentsList().get(0).getVehicles().add(vehicle2);
-        Vehicle vehicle3 = new Vehicle(3,"Lamborghini","Aventador", 2019,12345);
+        Vehicle vehicle3 = new Vehicle("Lamborghini","Aventador", 2019,12345, Status.AVAILABLE, StateOfCar.DAMAGED);
         app.getDepartmentsList().get(0).getVehicles().add(vehicle3);
-        Vehicle vehicle4 = new Vehicle(4,"Fiat","Seicento", 2004,12345);
+        Vehicle vehicle4 = new Vehicle("Fiat","Seicento", 2004,12345, Status.AVAILABLE, StateOfCar.SERVICE_REQUIRED);
         app.getDepartmentsList().get(0).getVehicles().add(vehicle4);
 
 

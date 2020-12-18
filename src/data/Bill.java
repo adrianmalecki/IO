@@ -1,13 +1,14 @@
 package data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Bill {
 
     private int ID;
     private float cost;
     private float discount;
-    private LocalDate date;
+    private LocalDateTime date;
     private float penalty;
 
     public int getID() {
@@ -34,11 +35,11 @@ public class Bill {
         this.discount = discount;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

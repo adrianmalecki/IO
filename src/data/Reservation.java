@@ -5,19 +5,10 @@ import java.util.List;
 
 public class Reservation {
 
-    private int reservationID;
     private Client client;
     private LocalDate startDate;
     private LocalDate endDate;
-    private List<Vehicle> cars;
-
-    public int getReservationID() {
-        return reservationID;
-    }
-
-    public void setReservationID(int reservationID) {
-        this.reservationID = reservationID;
-    }
+    private Vehicle vehicle;
 
     public Client getClient() {
         return client;
@@ -43,11 +34,11 @@ public class Reservation {
         this.endDate = endDate;
     }
 
-    public List<Vehicle> getCars() {
-        return cars;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setCars(List<Vehicle> cars) {
-        this.cars = cars;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }
