@@ -1,12 +1,17 @@
 package application;
 
 import data.Client;
+import data.Reservation;
+import data.Status;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class ClientView {
     public JPanel clientPanel;
@@ -26,14 +31,16 @@ public class ClientView {
     private JTextField startDateTextField;
     private JTextField endDateTextField;
     private JLabel inputDate;
-    private JButton showAvaiableCarsBtn;
-    private JTable carsTable;
+    private JButton showAvailableCarsBtn;
+
     private JTextField addressTextField;
     private JTextField cityTextField;
     private JTextField postCodeTextField;
     private JTextField emailTextField;
     private JTextField phoneTextField;
     private JButton deleteData;
+    private JTable carsTable;
+    private JButton reserveVehicle;
     //private Client client;
     int clicked = 0;
     int selected_dep = -1;
@@ -55,11 +62,15 @@ public class ClientView {
         postCodeTextField.setText(client.getPostCode());
         emailTextField.setText(client.getEmail());
         phoneTextField.setText(client.getPhoneNumber());
-        startDateTextField.setVisible(false);
-        endDateTextField.setVisible(false);
-        inputDate.setVisible(false);
-        showAvaiableCarsBtn.setVisible(false);
-        carsTable.setVisible(false);
+
+
+        String[] departments = new String[Facade.getDepartmentsList().size()];
+        for (int i=0; i<Facade.getDepartmentsList().size(); i++) {
+            departments[i] = Facade.getDepartmentsList().get(i).getCity();
+        }
+
+        DefaultComboBoxModel deparmentsModel = new DefaultComboBoxModel(departments);
+        comboBox.setModel(deparmentsModel);
 
 
         modifyDataButton.addActionListener(new ActionListener() {
@@ -74,14 +85,6 @@ public class ClientView {
         });
 
 
-
-        showAvaiableCarsBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-
-            }
-        });
         deleteData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,7 +95,85 @@ public class ClientView {
                 deleteDataFrame.setVisible(true);
             }
         });
+
+
+        showAvailableCarsBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isDateValid(startDateTextField.getText()) && isDateValid(endDateTextField.getText())) {
+                    if (LocalDate.parse(startDateTextField.getText()).isBefore(LocalDate.parse(endDateTextField.getText())) || LocalDate.parse(startDateTextField.getText()).isEqual(LocalDate.parse(endDateTextField.getText()))) {
+                        String columns[] = {"Marka","Model","Rok produkcji", "Przebieg"};
+                        DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
+                        Object rowData[] = new Object[4];
+                        for (int i=0; i<Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().size(); i++) {
+                            if (Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(i).getStatus().equals(Status.AVAILABLE)) {
+                                rowData[0] = Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(i).getBrand();
+                                rowData[1] = Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(i).getModel();
+                                rowData[2] = Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(i).getYearOfProduction();
+                                rowData[3] = Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(i).getCarsMileage();
+                                tableModel.addRow(rowData);
+                            }
+                            else {
+                                rowData[0] = "";
+                                rowData[1] = "";
+                                rowData[2] = "";
+                                rowData[3] = "";
+                                tableModel.addRow(rowData);
+                            }
+                        }
+                        carsTable.setModel(tableModel);
+                    }
+
+                    else {
+                        JOptionPane.showMessageDialog(reservePanel, "Błędna chronologia dat!");
+                    }
+                }
+
+                else {
+                    JOptionPane.showMessageDialog(reservePanel, "Zły format dat!");
+                }
+            }
+        });
+
+        reserveVehicle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isDateValid(startDateTextField.getText()) && isDateValid(endDateTextField.getText())) {
+                    if (LocalDate.parse(startDateTextField.getText()).isBefore(LocalDate.parse(endDateTextField.getText())) || LocalDate.parse(startDateTextField.getText()).isEqual(LocalDate.parse(endDateTextField.getText()))) {
+                        if (carsTable.getSelectedRow() > -1 && Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(carsTable.getSelectedRow()).getStatus().equals(Status.AVAILABLE)) {
+                            Reservation reservation = new Reservation();
+                            reservation.setClient(client);
+                            reservation.setStartDate(LocalDate.parse(startDateTextField.getText()));
+                            reservation.setEndDate(LocalDate.parse(endDateTextField.getText()));
+                            reservation.setVehicle(Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(carsTable.getSelectedRow()));
+                            Facade.getReservationList().add(reservation);
+                            String confirmation = "Pomyślnie zarezerwowano pojazd " + reservation.getVehicle().getBrand() + " " + reservation.getVehicle().getModel() + " w terminie od " + reservation.getStartDate().toString() + " do " + reservation.getEndDate().toString() + ".";
+                            JOptionPane.showMessageDialog(reservePanel, confirmation);
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(reservePanel, "Kliknij na wiersz z wybranym pojazdem!");
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(reservePanel, "Błędna chronologia dat!");
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(reservePanel, "Zły format dat!");
+                }
+            }
+        });
     }
+
+    public boolean isDateValid(String dateStr) {
+        try {
+            LocalDate.parse(dateStr);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
+    }
+
     public void editData(ActionEvent e) {
 
         firstNameTextField.setEditable(true);
@@ -137,11 +218,9 @@ public class ClientView {
 
     private void createUIComponents() {
         tabbedPane1 = new JTabbedPane();
-        startDateTextField = new JTextField();
-        endDateTextField = new JTextField();
-        inputDate = new JLabel();
-        showAvaiableCarsBtn = new JButton();
+        //showAvailableCarsBtn = new JButton();
         carsTable = new JTable();
+        comboBox = new JComboBox();
         deleteData = new JButton();
     }
 }
