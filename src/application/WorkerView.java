@@ -9,7 +9,6 @@ public class WorkerView {
     }
 
     public void transformReservationToRental() {
-
     }
 
     public void showRentals() {
@@ -25,8 +24,5 @@ public class WorkerView {
     }
 
     public void generateBill() {
-    }
-
-    public void signIn() {
     }
 }

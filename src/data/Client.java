@@ -1,7 +1,5 @@
 package data;
 
-import application.Facade;
-
 import javax.swing.*;
 
 public class Client extends User {

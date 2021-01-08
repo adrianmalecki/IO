@@ -19,7 +19,6 @@ public class Vehicle {
     }
 
     public static void modifyData() {
-
     }
 
     public String getBrand() {

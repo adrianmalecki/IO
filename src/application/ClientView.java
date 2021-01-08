@@ -32,7 +32,6 @@ public class ClientView {
     private JTextField endDateTextField;
     private JLabel inputDate;
     private JButton showAvailableCarsBtn;
-
     private JTextField addressTextField;
     private JTextField cityTextField;
     private JTextField postCodeTextField;
@@ -42,7 +41,7 @@ public class ClientView {
     private JTable carsTable;
     private JButton reserveVehicle;
     private JButton logOutButton;
-    //private Client client;
+
     int clicked = 0;
     int selected_dep = -1;
 
@@ -169,7 +168,6 @@ public class ClientView {
     }
 
     public void editData(ActionEvent e) {
-
         firstNameTextField.setEditable(true);
         lastNameTextField.setEditable(true);
         addressTextField.setEditable(true);
@@ -181,7 +179,6 @@ public class ClientView {
         clicked = 1;
     }
     public void saveData(ActionEvent e) {
-
         firstNameTextField.setEditable(false);
         lastNameTextField.setEditable(false);
         addressTextField.setEditable(false);
@@ -197,9 +194,6 @@ public class ClientView {
     }
 
     public void cancelReservation() {
-    }
-
-    public void chooseDepartment() {
     }
 
     public void showReservations() {
