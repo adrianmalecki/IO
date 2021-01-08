@@ -8,6 +8,10 @@ public class WorkerView {
     public void endRental() {
     }
 
+    public void transformReservationToRental() {
+
+    }
+
     public void showRentals() {
     }
 

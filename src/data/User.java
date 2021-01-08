@@ -1,7 +1,13 @@
 package data;
 
+import application.Facade;
+
+import javax.swing.*;
+
 public class User {
 
+    private String login;
+    private String password;
     private String PESEL;
     private String firstName;
     private String lastName;
@@ -12,7 +18,9 @@ public class User {
     private String address;
     private String identityCardNumber;
 
-    public User(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber) {
+    public User(String login, String password, String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber) {
+        this.login = login;
+        this.password = password;
         this.PESEL = PESEL;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,6 +33,60 @@ public class User {
     }
 
     public User() {
+    }
+
+    public static int checkLoginData(String login, String password){
+        for (Client c: Facade.getClientList()) {
+            if(login.equals(c.getLogin())) {
+                if (password.equals(c.getPassword())) {
+                    return Facade.getClientList().indexOf(c);
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static boolean verifyUserName(String login){
+        for (Client c: Facade.getClientList()) {
+            if(login.equals(c.getLogin())) {
+                JOptionPane.showMessageDialog(null,"Wybierz inny login");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean verifyPassword(char[] password){
+        if(password.length < 8) {
+            JOptionPane.showMessageDialog(null, "Hasło za krótkie");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkPESEL(String PESEL) {
+        for (Client c:Facade.getClientList()) {
+            if(PESEL.equals(c.getPESEL())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {

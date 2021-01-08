@@ -26,7 +26,7 @@ public class RegisterView {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (verifyUserName(textFieldLogin.getText()) && verifyPassword(passwordField.getPassword()) && checkData(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldPhone.getText(), textFieldIDNumber.getText(), textFieldDrivingLic.getText())) {
+                if (Client.verifyUserName(textFieldLogin.getText()) && Client.verifyPassword(passwordField.getPassword()) && Client.checkData(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldPhone.getText(), textFieldIDNumber.getText(), textFieldDrivingLic.getText())) {
                     Facade.registerClient(PESEL, textFieldFirstName.getText(), textFieldLastName.getText(), textFieldPhone.getText(), textFieldEmail.getText(), textFieldPostCode.getText(), textFieldCity.getText(), textFieldAddress.getText(), textFieldIDNumber.getText(), textFieldDrivingLic.getText(), textFieldLogin.getText(), passwordField.getPassword());
                     CheckPeselView.registerFrame.setVisible(false);
                     JOptionPane.showMessageDialog(CheckPeselView.registerFrame,"Pomyślnie zarejestrowano nowego użytkownika!");
@@ -37,48 +37,6 @@ public class RegisterView {
                 }
             }
         });
-    }
-
-    private boolean verifyUserName(String login){
-        for (Client c: Facade.getClientList()) {
-            if(login.equals(c.getLogin())) {
-                JOptionPane.showMessageDialog(null,"Wybierz inny login");
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean verifyPassword(char [] password){
-        if(password.length < 8) {
-            JOptionPane.showMessageDialog(null, "Hasło za krótkie");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkData(String firstName, String lastName, String phoneNumber, String idNumber, String drivingLicenseNumber){
-        if((firstName.length() == 0)/* || !(firstName.matches("[A-Za-z]"))*/){
-            JOptionPane.showMessageDialog(null, "Niepoprawne dane(IMIĘ).");
-            return false;
-        }
-        if((lastName.length() == 0)/* || !(lastName.matches("[A-Za-z]"))*/){
-            JOptionPane.showMessageDialog(null, "Niepoprawne dane(NAZWISKO).");
-            return false;
-        }
-        if((phoneNumber.length() != 9) || !(phoneNumber.matches("\\d+"))){
-            JOptionPane.showMessageDialog(null, "Niepoprawne dane(TELEFON).");
-            return false;
-        }
-        if(idNumber.length() == 0){
-            JOptionPane.showMessageDialog(null, "Pole NR DOWODU OSOBISTEGO nie moze być puste.");
-            return false;
-        }
-        if(drivingLicenseNumber.length() == 0){
-            JOptionPane.showMessageDialog(null, "Pole NR PRAWA JAZDY nie moze być puste.");
-            return false;
-        }
-        return true;
     }
 
 }

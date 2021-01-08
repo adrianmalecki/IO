@@ -59,36 +59,6 @@ public class Facade {
 
     }
 
-    public static int verifyData(String login, String password){
-        for (Client c: clientList) {
-            if(login.equals(c.getLogin())) {
-                if (password.equals(c.getPassword())) {
-                    return clientList.indexOf(c);
-                }
-            }
-        }
-        return -1;
-    }
-
-    public static boolean checkPESEL(String PESEL) {
-        for (Client c:clientList) {
-            if(PESEL.equals(c.getPESEL())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static void modifyData(Client client, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address) {
-        client.setFirstName(firstName);
-        client.setLastName(lastName);
-        client.setEmail(email);
-        client.setPhoneNumber(phoneNumber);
-        client.setAddress(address);
-        client.setCity(city);
-        client.setPostCode(postCode);
-    }
-
     public static void registerClient(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String drivingLicenseNumber, String login, char[] password) {
         Client client = new Client(PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber, drivingLicenseNumber, login, String.valueOf(password));
         addClient(client);

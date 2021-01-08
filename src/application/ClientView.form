@@ -208,6 +208,14 @@
                   <text value="Usun konto"/>
                 </properties>
               </component>
+              <component id="a88c0" class="javax.swing.JButton" binding="logOutButton">
+                <constraints>
+                  <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Wyloguj się"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="5d04d" binding="reservePanel" layout-manager="GridLayoutManager" row-count="5" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

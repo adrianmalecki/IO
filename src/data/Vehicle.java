@@ -18,6 +18,10 @@ public class Vehicle {
         this.stateOfCar = stateOfCar;
     }
 
+    public static void modifyData() {
+
+    }
+
     public String getBrand() {
         return brand;
     }

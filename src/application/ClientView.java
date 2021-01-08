@@ -41,6 +41,7 @@ public class ClientView {
     private JButton deleteData;
     private JTable carsTable;
     private JButton reserveVehicle;
+    private JButton logOutButton;
     //private Client client;
     int clicked = 0;
     int selected_dep = -1;
@@ -78,7 +79,7 @@ public class ClientView {
             public void actionPerformed(ActionEvent e) {
                 if(clicked==0) editData(e);
                 else {
-                    Facade.modifyData(client, firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText(), emailTextField.getText(), postCodeTextField.getText(), cityTextField.getText(), addressTextField.getText());
+                    Client.modifyData(client, firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText(), emailTextField.getText(), postCodeTextField.getText(), cityTextField.getText(), addressTextField.getText());
                     saveData(e);
                 }
             }
@@ -141,14 +142,7 @@ public class ClientView {
                 if (isDateValid(startDateTextField.getText()) && isDateValid(endDateTextField.getText())) {
                     if (LocalDate.parse(startDateTextField.getText()).isBefore(LocalDate.parse(endDateTextField.getText())) || LocalDate.parse(startDateTextField.getText()).isEqual(LocalDate.parse(endDateTextField.getText()))) {
                         if (carsTable.getSelectedRow() > -1 && Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(carsTable.getSelectedRow()).getStatus().equals(Status.AVAILABLE)) {
-                            Reservation reservation = new Reservation();
-                            reservation.setClient(client);
-                            reservation.setStartDate(LocalDate.parse(startDateTextField.getText()));
-                            reservation.setEndDate(LocalDate.parse(endDateTextField.getText()));
-                            reservation.setVehicle(Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(carsTable.getSelectedRow()));
-                            Facade.getReservationList().add(reservation);
-                            String confirmation = "Pomyślnie zarezerwowano pojazd " + reservation.getVehicle().getBrand() + " " + reservation.getVehicle().getModel() + " w terminie od " + reservation.getStartDate().toString() + " do " + reservation.getEndDate().toString() + ".";
-                            JOptionPane.showMessageDialog(reservePanel, confirmation);
+                            JOptionPane.showMessageDialog(reservePanel, reserveCar(client));
                         }
                         else {
                             JOptionPane.showMessageDialog(reservePanel, "Kliknij na wiersz z wybranym pojazdem!");
@@ -199,21 +193,27 @@ public class ClientView {
         clicked=0;
     }
 
-    public void deleteData() {
+    public void logOut() {
     }
 
     public void cancelReservation() {
     }
 
     public void chooseDepartment() {
-
     }
 
     public void showReservations() {
     }
 
-    public void reserveCar() {
-
+    public String reserveCar(Client client) {
+        Reservation reservation = new Reservation();
+        reservation.setClient(client);
+        reservation.setStartDate(LocalDate.parse(startDateTextField.getText()));
+        reservation.setEndDate(LocalDate.parse(endDateTextField.getText()));
+        reservation.setVehicle(Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(carsTable.getSelectedRow()));
+        Facade.getReservationList().add(reservation);
+        String confirmation = "Pomyślnie zarezerwowano pojazd " + reservation.getVehicle().getBrand() + " " + reservation.getVehicle().getModel() + " w terminie od " + reservation.getStartDate().toString() + " do " + reservation.getEndDate().toString() + ".";
+        return confirmation;
     }
 
     private void createUIComponents() {

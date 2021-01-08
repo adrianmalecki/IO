@@ -1,5 +1,7 @@
 package application;
 
+import data.User;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +16,7 @@ public class CheckPeselView {
         zatwierdzButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (Facade.checkPESEL(enterPESEL.getText())) {
+                if (User.checkPESEL(enterPESEL.getText())) {
                     JOptionPane.showMessageDialog(SignInPanel.checkPanel,"Istnieje już konto użytkownika o takim samym numerze PESEL!");
                     SignInPanel.checkPanel.setVisible(false);
                     SignInPanel.signInFrame.setContentPane(new SignInPanel().loginPanel);

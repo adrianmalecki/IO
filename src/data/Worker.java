@@ -6,8 +6,8 @@ public class Worker extends User {
     private float salary;
     private Department department;
 
-    public Worker(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String workerPosition, float salary, Department department) {
-        super(PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber);
+    public Worker(String login, String password, String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String workerPosition, float salary, Department department) {
+        super(login, password, PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber);
         this.workerPosition = workerPosition;
         this.salary = salary;
         this.department = department;

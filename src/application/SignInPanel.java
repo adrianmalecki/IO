@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import data.Client;
+import data.User;
 
 public class SignInPanel {
     static JFrame signInFrame = new JFrame("Wypożyczalnia pojazdów");
@@ -41,9 +42,9 @@ public class SignInPanel {
     }
 
     private void signIn(String userName, char[] password){
-        int cID = Facade.verifyData(userName, String.valueOf(password));
+        int cID = User.checkLoginData(userName, String.valueOf(password));
         if(cID == -1){
-            JOptionPane.showMessageDialog(null,"Niepoprawny login lub/i hasło");
+            JOptionPane.showMessageDialog(signInFrame,"Niepoprawny login lub/i hasło");
         }
         else{
             signInFrame.setVisible(false);
@@ -57,19 +58,6 @@ public class SignInPanel {
     }
 
     public static void runSignInPanel(){
-        /*try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-        }
-        } catch (UnsupportedLookAndFeelException e) {
-        } catch (ClassNotFoundException e) {
-        } catch (InstantiationException e) {
-        } catch (IllegalAccessException e) {
-        }*/       // interfejs Nimbus
-
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");  // This line gives Windows Theme
         } catch (ClassNotFoundException e) {

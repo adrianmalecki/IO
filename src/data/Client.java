@@ -1,35 +1,56 @@
 package data;
 
+import application.Facade;
+
+import javax.swing.*;
+
 public class Client extends User {
 
-    private String login;
-    private String password;
     private String drivingLicenseNumber;
 
     public Client(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String drivingLicenseNumber, String login, String password) {
-        super(PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber);
+        super(login, password, PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber);
         this.drivingLicenseNumber = drivingLicenseNumber;
-        this.login = login;
-        this.password = password;
     }
 
     public Client() {
     }
 
-    public String getLogin() {
-        return login;
+    public static void modifyData(Client client, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address) {
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setEmail(email);
+        client.setPhoneNumber(phoneNumber);
+        client.setAddress(address);
+        client.setCity(city);
+        client.setPostCode(postCode);
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public static boolean checkData(String firstName, String lastName, String phoneNumber, String idNumber, String drivingLicenseNumber){
+        if((firstName.length() == 0)/* || !(firstName.matches("[A-Za-z]"))*/){
+            JOptionPane.showMessageDialog(null, "Niepoprawne dane(IMIĘ).");
+            return false;
+        }
+        if((lastName.length() == 0)/* || !(lastName.matches("[A-Za-z]"))*/){
+            JOptionPane.showMessageDialog(null, "Niepoprawne dane(NAZWISKO).");
+            return false;
+        }
+        if((phoneNumber.length() != 9) || !(phoneNumber.matches("\\d+"))){
+            JOptionPane.showMessageDialog(null, "Niepoprawne dane(TELEFON).");
+            return false;
+        }
+        if(idNumber.length() == 0){
+            JOptionPane.showMessageDialog(null, "Pole NR DOWODU OSOBISTEGO nie moze być puste.");
+            return false;
+        }
+        if(drivingLicenseNumber.length() == 0){
+            JOptionPane.showMessageDialog(null, "Pole NR PRAWA JAZDY nie moze być puste.");
+            return false;
+        }
+        return true;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void deleteData() {
     }
 
     public String getDrivingLicenseNumber() {
