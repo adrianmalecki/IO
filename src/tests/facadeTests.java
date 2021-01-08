@@ -1,6 +1,7 @@
 package tests;
 
 import application.Facade;
+import data.Client;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,7 +46,7 @@ public class facadeTests {
     public void verifyDataTest(){
         //given
         //when
-        int result = facade.verifyData(login, password);
+        int result = Client.checkLoginData(login, password);
         //then
         Assert.assertEquals(result, expectedResult);
     }
@@ -55,7 +56,7 @@ public class facadeTests {
         //given
         String PESEl = "99010112147";
         //when
-        boolean result = facade.checkPESEL(PESEl);
+        boolean result = Client.checkPESEL(PESEl);
         //then
         Assert.assertTrue(result);
     }
