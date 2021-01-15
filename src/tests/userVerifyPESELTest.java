@@ -1,7 +1,7 @@
 package tests;
 
 import application.Facade;
-import data.Client;
+import data.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +10,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
+
 
 @RunWith(Parameterized.class)
 public class userVerifyPESELTest {
@@ -21,7 +22,6 @@ public class userVerifyPESELTest {
         dataForTests = new DataForTests();
         facade = new Facade();
         facade.setClientList(dataForTests.getPrepareClients());
-        System.out.println(dataForTests.getPrepareClients());
     }
 
     @Parameterized.Parameter(0)
@@ -38,7 +38,7 @@ public class userVerifyPESELTest {
     @Test
     public void verifyPESELTest() {
         //when
-        boolean result = Client.checkPESEL(PESEL);
+        boolean result = User.checkPESEL(PESEL);
         //then
         Assert.assertEquals(result, expectedResult);
     }

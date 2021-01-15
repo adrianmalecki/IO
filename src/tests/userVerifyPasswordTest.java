@@ -1,18 +1,18 @@
 package tests;
 
 import application.Facade;
-import data.Client;
+import data.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import static org.junit.runners.Parameterized.Parameter;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.runners.Parameterized.Parameter;
 
 @RunWith(Parameterized.class)
 public class userVerifyPasswordTest {
@@ -43,7 +43,7 @@ public class userVerifyPasswordTest {
     @Test
     public void verifyPasswordTest(){
         //when
-        boolean result = Client.verifyPassword(password);
+        boolean result = User.verifyPassword(password);
         //then
         Assert.assertEquals(result, expectedResult);
     }

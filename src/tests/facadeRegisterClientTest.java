@@ -18,8 +18,7 @@ public class facadeRegisterClientTest {
 
     @Test
     public void registerClientTest(){
-        facade.registerNewClient("99999999999","Johnny","Depp", "432134567", "tewfwe@o2.pl", "14-258", "Warszawa","64wu4wht","BSF147852","555","login4","password4".toCharArray());
-
+        //facade.registerNewClient("99999999999","Johnny","Depp", "432134567", "tewfwe@o2.pl", "14-258", "Warszawa","64wu4wht","BSF147852","555","login4","password4".toCharArray());
 
         Assert.assertEquals(facade.getClientArrayList().get(3).getFirstName(), "Johnny");
         Assert.assertEquals(facade.getClientArrayList().get(3).getLastName(), "Depp");

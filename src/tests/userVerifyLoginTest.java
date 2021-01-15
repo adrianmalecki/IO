@@ -1,7 +1,7 @@
 package tests;
 
 import application.Facade;
-import data.Client;
+import data.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,6 @@ public class userVerifyLoginTest {
         dataForTests = new DataForTests();
         facade = new Facade();
         facade.setClientList(dataForTests.getPrepareClients());
-        System.out.println(dataForTests.getPrepareClients());
     }
 
     @Parameterized.Parameter(0)
@@ -38,7 +37,7 @@ public class userVerifyLoginTest {
     @Test
     public void verifyLoginTest() {
         //when
-        boolean result = Client.verifyUserName(login);
+        boolean result = User.verifyUserName(login);
         //then
         Assert.assertEquals(result, expectedResult);
     }
