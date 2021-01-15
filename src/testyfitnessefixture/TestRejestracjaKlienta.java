@@ -19,7 +19,7 @@ public class TestRejestracjaKlienta extends ColumnFixture {
                     dane[8],
                     dane[9],
                     dane[10],
-                    dane[11]);
+                    dane[11].toCharArray());
             return true;
         }catch (Exception e){
             return false;

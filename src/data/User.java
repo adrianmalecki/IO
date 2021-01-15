@@ -36,10 +36,11 @@ public class User {
     }
 
     public static int checkLoginData(String login, String password){
-        for (Client c: Facade.getClientList()) {
+        Facade facade = new Facade();
+        for (Client c: facade.getClientArrayList()) {
             if(login.equals(c.getLogin())) {
                 if (password.equals(c.getPassword())) {
-                    return Facade.getClientList().indexOf(c);
+                    return facade.getClientArrayList().indexOf(c);
                 }
             }
         }

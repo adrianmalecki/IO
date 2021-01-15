@@ -64,6 +64,16 @@ public class Facade {
         addClient(client);
     }
 
+    public void registerNewClient(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String drivingLicenseNumber, String login, char[] password) {
+        Client client = new Client(PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber, drivingLicenseNumber, login, String.valueOf(password));
+        addClient(client);
+    }
+
+    public void registerNewClientt(String [] dane) {
+        Client client = new Client(dane[0], dane[1], dane[2], dane[3], dane[4], dane[5], dane[6], dane[7], dane[8], dane[9], dane[10], String.valueOf(dane[11]));
+        addClient(client);
+    }
+
     private static void addClient(Client client) {
         clientList.add(client);
     }
@@ -73,6 +83,10 @@ public class Facade {
     }
 
     public static ArrayList<Client> getClientList() {
+        return clientList;
+    }
+
+    public ArrayList<Client> getClientArrayList() {
         return clientList;
     }
 
@@ -118,5 +132,13 @@ public class Facade {
 
     public static void setBillList(ArrayList<Bill> billList) {
         Facade.billList = billList;
+    }
+
+    public void registerClient(String[] dane1) {
+    }
+
+    public boolean jakasMetoda(String dane23) {
+        return false;
+
     }
 }
