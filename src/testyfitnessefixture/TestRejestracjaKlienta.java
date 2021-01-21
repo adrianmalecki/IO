@@ -2,29 +2,27 @@ package testyfitnessefixture;
 
 import fit.ColumnFixture;
 
-public class TestRejestracjaKlienta extends ColumnFixture {
+import java.util.IllegalFormatCodePointException;
 
-    public boolean registerClient(){
-        String dane[] = new String[0];
-        //String PESEL, firstName = "", lastName ="", phoneNumber ="", email ="", postCode ="", city ="", address ="", identityCardNumber ="", drivingLicenseNumber ="", login ="", password ="";
+public class TestRejestracjaKlienta extends ColumnFixture {
+    private String[] dane;
+
+    public boolean registerClientTest() throws IllegalFormatCodePointException {
         try{
-            SetUp.application.registerNewClient(dane[0],
-                    dane[1],
-                    dane[2],
-                    dane[3],
-                    dane[4],
-                    dane[5],
-                    dane[6],
-                    dane[7],
-                    dane[8],
-                    dane[9],
-                    dane[10],
-                    dane[11].toCharArray());
+            SetUp.application.registerNewClient(getDane()[0], getDane()[1], getDane()[2], getDane()[3], getDane()[4], getDane()[5], getDane()[6], getDane()[7], getDane()[8], getDane()[9], getDane()[10], getDane()[11].toCharArray());
             return true;
+
         }catch (Exception e){
             return false;
         }
     }
+
+
+    public String[] getDane() {
+        return dane;
+    }
+
+    public void setDane(String[] dane) {
+        this.dane = dane;
+    }
 }
-
-

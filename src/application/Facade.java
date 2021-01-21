@@ -69,10 +69,7 @@ public class Facade {
         addClient(client);
     }
 
-    public void registerNewClientt(String [] dane) {
-        Client client = new Client(dane[0], dane[1], dane[2], dane[3], dane[4], dane[5], dane[6], dane[7], dane[8], dane[9], dane[10], String.valueOf(dane[11]));
-        addClient(client);
-    }
+
 
     private static void addClient(Client client) {
         clientList.add(client);
@@ -86,7 +83,7 @@ public class Facade {
         return clientList;
     }
 
-    public ArrayList<Client> getClientArrayList() {
+    public static ArrayList<Client> getClientArrayList() {
         return clientList;
     }
 
@@ -137,8 +134,4 @@ public class Facade {
     public void registerClient(String[] dane1) {
     }
 
-    public boolean jakasMetoda(String dane23) {
-        return false;
-
-    }
 }

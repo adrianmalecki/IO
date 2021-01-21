@@ -25,11 +25,11 @@ public class Client extends User {
     }
 
     public static boolean checkData(String firstName, String lastName, String phoneNumber, String idNumber, String drivingLicenseNumber){
-        if((firstName.length() == 0)/* || !(firstName.matches("[A-Za-z]"))*/){
+        if (!(firstName.matches("[a-zA-Z]+"))){
             JOptionPane.showMessageDialog(null, "Niepoprawne dane(IMIĘ).");
             return false;
         }
-        if((lastName.length() == 0)/* || !(lastName.matches("[A-Za-z]"))*/){
+        if((lastName.length() == 0) || !(lastName.matches("[a-zA-Z]+"))){
             JOptionPane.showMessageDialog(null, "Niepoprawne dane(NAZWISKO).");
             return false;
         }
