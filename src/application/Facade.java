@@ -2,7 +2,11 @@ package application;
 
 import data.*;
 
+import javax.swing.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+
+import static application.SignInPanel.signInFrame;
 
 public class Facade {
     private static ArrayList<Client> clientList;
@@ -59,17 +63,56 @@ public class Facade {
 
     }
 
-    public static void registerClient(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String drivingLicenseNumber, String login, char[] password) {
+    /*public static void registerClient(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String drivingLicenseNumber, String login, char[] password) {
         Client client = new Client(PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber, drivingLicenseNumber, login, String.valueOf(password));
         addClient(client);
-    }
+    }*/
 
     public void registerNewClient(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String drivingLicenseNumber, String login, char[] password) {
         Client client = new Client(PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber, drivingLicenseNumber, login, String.valueOf(password));
         addClient(client);
     }
 
+    public static void signIn(String userName, String password){
+        int cID = User.checkLoginData(userName, password);
+        if(cID == -1){
+            JOptionPane.showMessageDialog(signInFrame,"Niepoprawny login lub/i hasło");
+        }
+        else{
+            signInFrame.setVisible(false);
+            JFrame clientFrame = new JFrame("Wypożyczalnia pojazdów");
+            Client client = Facade.getClientList().get(cID);
+            clientFrame.setContentPane(new ClientView(client).clientPanel);
+            clientFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            clientFrame.pack();
+            clientFrame.setVisible(true);
+        }
+    }
 
+    public static void removeClientData(Client client) {
+        clientList.remove(client);
+    }
+
+    public static void modifyClientData(Client client, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address) {
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setEmail(email);
+        client.setPhoneNumber(phoneNumber);
+        client.setAddress(address);
+        client.setCity(city);
+        client.setPostCode(postCode);
+    }
+
+    public static String reserveCar(Client client, Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
+        Reservation reservation = new Reservation();
+        reservation.setClient(client);
+        reservation.setStartDate(startDate);
+        reservation.setEndDate(endDate);
+        reservation.setVehicle(vehicle);
+        Facade.getReservationList().add(reservation);
+        String confirmation = "Pomyślnie zarezerwowano pojazd " + reservation.getVehicle().getBrand() + " " + reservation.getVehicle().getModel() + " w terminie od " + reservation.getStartDate().toString() + " do " + reservation.getEndDate().toString() + ".";
+        return confirmation;
+    }
 
     private static void addClient(Client client) {
         clientList.add(client);
@@ -77,6 +120,48 @@ public class Facade {
 
     private static void addDepartment(Department department) {
         getDepartmentsList().add(department);
+    }
+
+    public static void rentCar() {
+    }
+
+    public static void endRental() {
+    }
+
+    public static void transformReservationToRental() {
+    }
+
+    public static void showRentals() {
+    }
+
+    public static void showCarList() {
+    }
+
+    public static void showClients() {
+    }
+
+    public static void showClientsReservations() {
+    }
+
+    public static void generateBill() {
+    }
+
+    public static void buyCar() {
+    }
+
+    public static void sellCar() {
+    }
+
+    public static void showWorkerList() {
+    }
+
+    public static void registerWorker() {
+    }
+
+    public static void editWorkerData() {
+    }
+
+    public static void hireWorker() {
     }
 
     public static ArrayList<Client> getClientList() {

@@ -78,7 +78,7 @@ public class ClientView {
             public void actionPerformed(ActionEvent e) {
                 if(clicked==0) editData(e);
                 else {
-                    Client.modifyData(client, firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText(), emailTextField.getText(), postCodeTextField.getText(), cityTextField.getText(), addressTextField.getText());
+                    Facade.modifyClientData(client, firstNameTextField.getText(), lastNameTextField.getText(), phoneTextField.getText(), emailTextField.getText(), postCodeTextField.getText(), cityTextField.getText(), addressTextField.getText());
                     saveData(e);
                 }
             }
@@ -141,7 +141,15 @@ public class ClientView {
                 if (isDateValid(startDateTextField.getText()) && isDateValid(endDateTextField.getText())) {
                     if (LocalDate.parse(startDateTextField.getText()).isBefore(LocalDate.parse(endDateTextField.getText())) || LocalDate.parse(startDateTextField.getText()).isEqual(LocalDate.parse(endDateTextField.getText()))) {
                         if (carsTable.getSelectedRow() > -1 && Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(carsTable.getSelectedRow()).getStatus().equals(Status.AVAILABLE)) {
-                            JOptionPane.showMessageDialog(reservePanel, reserveCar(client));
+                            JOptionPane.showMessageDialog(
+                                    reservePanel,
+                                    Facade.reserveCar(
+                                            client,
+                                            Facade.getDepartmentsList().get(comboBox.getSelectedIndex()).getVehicles().get(carsTable.getSelectedRow()),
+                                            LocalDate.parse(startDateTextField.getText()),
+                                            LocalDate.parse(endDateTextField.getText())
+                                    )
+                            );
                         }
                         else {
                             JOptionPane.showMessageDialog(reservePanel, "Kliknij na wiersz z wybranym pojazdem!");

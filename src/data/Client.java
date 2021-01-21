@@ -14,16 +14,6 @@ public class Client extends User {
     public Client() {
     }
 
-    public static void modifyData(Client client, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address) {
-        client.setFirstName(firstName);
-        client.setLastName(lastName);
-        client.setEmail(email);
-        client.setPhoneNumber(phoneNumber);
-        client.setAddress(address);
-        client.setCity(city);
-        client.setPostCode(postCode);
-    }
-
     public static boolean checkData(String firstName, String lastName, String phoneNumber, String idNumber, String drivingLicenseNumber){
         if (!(firstName.matches("[a-zA-Z]+"))){
             JOptionPane.showMessageDialog(null, "Niepoprawne dane(IMIĘ).");

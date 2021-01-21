@@ -35,7 +35,19 @@ public class User {
     public User() {
     }
 
-    public static int checkLoginData(String login, String password){
+    /*public static int checkLoginData(String login, String password){
+        Facade facade = new Facade();
+        for (Client c: facade.getClientArrayList()) {
+            if(login.equals(c.getLogin())) {
+                if (password.equals(c.getPassword())) {
+                    return facade.getClientArrayList().indexOf(c);
+                }
+            }
+        }
+        return -1;
+    }*/
+
+    public static int checkLoginData(String login, String password){   // version for Mockito...
         for (Client c: Facade.getClientArrayList()) {
             if(login.equals(c.getLogin())) {
                 if (password.equals(c.getPassword())) {

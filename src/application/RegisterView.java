@@ -27,7 +27,7 @@ public class RegisterView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (Client.verifyUserName(textFieldLogin.getText()) && Client.verifyPassword(passwordField.getPassword()) && Client.checkData(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldPhone.getText(), textFieldIDNumber.getText(), textFieldDrivingLic.getText())) {
-                    Facade.registerClient(PESEL, textFieldFirstName.getText(), textFieldLastName.getText(), textFieldPhone.getText(), textFieldEmail.getText(), textFieldPostCode.getText(), textFieldCity.getText(), textFieldAddress.getText(), textFieldIDNumber.getText(), textFieldDrivingLic.getText(), textFieldLogin.getText(), passwordField.getPassword());
+                    //Facade.registerNewClient(PESEL, textFieldFirstName.getText(), textFieldLastName.getText(), textFieldPhone.getText(), textFieldEmail.getText(), textFieldPostCode.getText(), textFieldCity.getText(), textFieldAddress.getText(), textFieldIDNumber.getText(), textFieldDrivingLic.getText(), textFieldLogin.getText(), passwordField.getPassword());
                     CheckPeselView.registerFrame.setVisible(false);
                     JOptionPane.showMessageDialog(CheckPeselView.registerFrame,"Pomyślnie zarejestrowano nowego użytkownika!");
                     SignInPanel.signInFrame.setContentPane(new SignInPanel().loginPanel);

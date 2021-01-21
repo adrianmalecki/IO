@@ -43,7 +43,7 @@ public class ConfirmDeleting {
                 if(clientPassword.equals(textFieldPassword.getText())) {
                     for (Client c: Facade.getClientList()) {
                         if(clientLogin.equals(c.getLogin())) {
-                            Facade.getClientList().remove(c);
+                            Facade.removeClientData(c);
                             JOptionPane.showMessageDialog(null,"Twoje konto zostało usunięte");
                             // zamknąć okna
                         }

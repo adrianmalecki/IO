@@ -23,7 +23,7 @@ public class SignInPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    signIn(loginTextField.getText(), hasloPasswordField.getPassword());
+                    Facade.signIn(loginTextField.getText(), String.valueOf(hasloPasswordField.getPassword()));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -41,7 +41,7 @@ public class SignInPanel {
         });
     }
 
-    private void signIn(String userName, char[] password){
+    /*private void signIn(String userName, char[] password){
         int cID = User.checkLoginData(userName, String.valueOf(password));
         if(cID == -1){
             JOptionPane.showMessageDialog(signInFrame,"Niepoprawny login lub/i hasło");
@@ -55,7 +55,7 @@ public class SignInPanel {
             clientFrame.pack();
             clientFrame.setVisible(true);
         }
-    }
+    }*/
 
     public static void runSignInPanel(){
         try {
