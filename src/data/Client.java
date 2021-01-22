@@ -1,5 +1,7 @@
 package data;
 
+import application.SignInPanel;
+
 import javax.swing.*;
 
 public class Client extends User {
@@ -15,24 +17,24 @@ public class Client extends User {
     }
 
     public static boolean checkData(String firstName, String lastName, String phoneNumber, String idNumber, String drivingLicenseNumber){
-        if (!(firstName.matches("[a-zA-Z]+"))){
-            JOptionPane.showMessageDialog(null, "Niepoprawne dane(IMIĘ).");
+        if((firstName.length() == 0) || !(firstName.matches("[A-Z][a-zA-ZżźćńółęąśŻŹĆŚŁÓŃ]+"))){
+            //JOptionPane.showMessageDialog(null, "Niepoprawne dane(IMIĘ).");
             return false;
         }
-        if((lastName.length() == 0) || !(lastName.matches("[a-zA-Z]+"))){
-            JOptionPane.showMessageDialog(null, "Niepoprawne dane(NAZWISKO).");
+        if((lastName.length() == 0) || !(lastName.matches("[A-Z][a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+"))){
+            //JOptionPane.showMessageDialog(null, "Niepoprawne dane(NAZWISKO).");
             return false;
         }
         if((phoneNumber.length() != 9) || !(phoneNumber.matches("\\d+"))){
-            JOptionPane.showMessageDialog(null, "Niepoprawne dane(TELEFON).");
+            //JOptionPane.showMessageDialog(null, "Niepoprawne dane(TELEFON).");
             return false;
         }
         if(idNumber.length() == 0){
-            JOptionPane.showMessageDialog(null, "Pole NR DOWODU OSOBISTEGO nie moze być puste.");
+            //JOptionPane.showMessageDialog(null, "Pole NR DOWODU OSOBISTEGO nie moze być puste.");
             return false;
         }
         if(drivingLicenseNumber.length() == 0){
-            JOptionPane.showMessageDialog(null, "Pole NR PRAWA JAZDY nie moze być puste.");
+            //JOptionPane.showMessageDialog(null, "Pole NR PRAWA JAZDY nie moze być puste.");
             return false;
         }
         return true;

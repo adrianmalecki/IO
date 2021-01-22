@@ -198,16 +198,10 @@ public class ClientView {
         clicked=0;
     }
 
-    public void logOut() {
+    private void logOut() {
     }
 
-    public void cancelReservation() {
-    }
-
-    public void showReservations() {
-    }
-
-    public String reserveCar(Client client) {
+    /*public String reserveCar(Client client) {
         Reservation reservation = new Reservation();
         reservation.setClient(client);
         reservation.setStartDate(LocalDate.parse(startDateTextField.getText()));
@@ -216,7 +210,7 @@ public class ClientView {
         Facade.getReservationList().add(reservation);
         String confirmation = "Pomyślnie zarezerwowano pojazd " + reservation.getVehicle().getBrand() + " " + reservation.getVehicle().getModel() + " w terminie od " + reservation.getStartDate().toString() + " do " + reservation.getEndDate().toString() + ".";
         return confirmation;
-    }
+    }*/
 
     private void createUIComponents() {
         tabbedPane1 = new JTabbedPane();

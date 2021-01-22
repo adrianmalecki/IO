@@ -4,9 +4,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import data.Client;
-import data.User;
-
 public class SignInPanel {
     static JFrame signInFrame = new JFrame("Wypożyczalnia pojazdów");
     static JFrame checkPanel = new JFrame("Wypożyczalnia pojazdów");

@@ -1,8 +1,10 @@
 package data;
 
 import application.Facade;
+import application.SignInPanel;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 public class User {
 
@@ -61,7 +63,7 @@ public class User {
     public static boolean verifyUserName(String login){
         for (Client c: Facade.getClientList()) {
             if(login.equals(c.getLogin())) {
-                JOptionPane.showMessageDialog(null,"Wybierz inny login");
+                //JOptionPane.showMessageDialog(null,"Wybierz inny login");
                 return false;
             }
         }
@@ -69,20 +71,23 @@ public class User {
     }
 
     public static boolean verifyPassword(char[] password){
-        if(password.length < 8) {
-            JOptionPane.showMessageDialog(null, "Hasło za krótkie");
+        if(!(Arrays.toString(password).matches("(?=.*[0-9])(?=.*[A-Z]).{8,}$"))) {
+            //JOptionPane.showMessageDialog(null, "Hasło za słabe (musi zawierać minimum: cyfrę, dużą literę i 8 znaków)");
             return false;
         }
         return true;
     }
 
     public static boolean checkPESEL(String PESEL) {
-        for (Client c:Facade.getClientList()) {
-            if(PESEL.equals(c.getPESEL())) {
-                return true;
+        if (PESEL.length() == 11) {
+            for (Client c:Facade.getClientList()) {
+                if(PESEL.equals(c.getPESEL())) {
+                    return false;
+                }
             }
+            return true;
         }
-        return false;
+        else return false;
     }
 
     public String getLogin() {

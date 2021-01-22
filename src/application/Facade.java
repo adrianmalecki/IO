@@ -68,7 +68,7 @@ public class Facade {
         addClient(client);
     }*/
 
-    public void registerNewClient(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String drivingLicenseNumber, String login, char[] password) {
+    public void registerClient(String PESEL, String firstName, String lastName, String phoneNumber, String email, String postCode, String city, String address, String identityCardNumber, String drivingLicenseNumber, String login, char[] password) {
         Client client = new Client(PESEL, firstName, lastName, phoneNumber, email, postCode, city, address, identityCardNumber, drivingLicenseNumber, login, String.valueOf(password));
         addClient(client);
     }
@@ -114,12 +114,7 @@ public class Facade {
         return confirmation;
     }
 
-    private static void addClient(Client client) {
-        clientList.add(client);
-    }
-
-    private static void addDepartment(Department department) {
-        getDepartmentsList().add(department);
+    public static void cancelReservation() {
     }
 
     public static void rentCar() {
@@ -129,6 +124,9 @@ public class Facade {
     }
 
     public static void transformReservationToRental() {
+    }
+
+    public static void showReservations() {
     }
 
     public static void showRentals() {
@@ -162,6 +160,14 @@ public class Facade {
     }
 
     public static void hireWorker() {
+    }
+
+    private static void addClient(Client client) {
+        clientList.add(client);
+    }
+
+    private static void addDepartment(Department department) {
+        getDepartmentsList().add(department);
     }
 
     public static ArrayList<Client> getClientList() {
@@ -216,7 +222,7 @@ public class Facade {
         Facade.billList = billList;
     }
 
-    public void registerClient(String[] dane1) {
+    /*public void registerClient(String[] dane1) {
     }
-
+*/
 }
